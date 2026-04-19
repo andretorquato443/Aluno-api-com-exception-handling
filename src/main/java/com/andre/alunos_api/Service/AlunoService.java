@@ -3,6 +3,7 @@ import com.andre.alunos_api.Repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.andre.alunos_api.Exception.ResourceNotFoundException;
 import com.andre.alunos_api.Models.Aluno;
 import java.util.List;
 
@@ -22,14 +23,14 @@ public class AlunoService {
     }
 
     //Listar todos
-    public List<Aluno> ListarAluno(){
+    public List<Aluno> ListarAluno(){ 
         return repository.findAll();
     }
 
     //Encontrar aluno por Id.Se nao achar, lança mensagem de erro
     public Aluno BuscarPorId(Long id){
         return repository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+            .orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado"));
     }
 
     //Atualiza

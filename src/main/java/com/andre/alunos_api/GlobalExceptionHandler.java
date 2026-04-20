@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     //devolve mensagem http adequada a excecao
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    
+    //ao inves de usar hash map , usa-se forma padronizada e reutilizavel da resposta de erro em forma da classe ApiError
     public ApiError handleNotFound(ResourceNotFoundException ex,HttpServletRequest request) {
     return new ApiError(
             404,
